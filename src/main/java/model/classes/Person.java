@@ -1,19 +1,21 @@
-package model;
+package model.classes;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import model.interfaces.IPerson;
 
 import javax.persistence.*;
 
+/**
+ * Eine Kalsse Person mit id und Namen.
+ */
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "Person")
-public class Person {
+public class Person implements IPerson {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;

@@ -5,6 +5,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+
+/**
+ * Verwaltet (z.b erstellt) die Verbindung zur Datenbank mit Hibernate
+ *
+ */
 public class HibernateUtils {
     private static final SessionFactory sessionFactory;
 

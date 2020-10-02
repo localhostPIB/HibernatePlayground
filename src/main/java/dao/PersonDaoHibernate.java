@@ -6,10 +6,15 @@ import org.hibernate.Session;
 import util.HibernateUtils;
 import validator.PersonValidator;
 
+import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Die Methoden welche fuer die Datenbank wichtig sind.
  */
 public class PersonDaoHibernate {
+    private List<IPerson> personList;
 
     /**
      * Speichert eine Person in die Datenbank ab.
@@ -27,7 +32,7 @@ public class PersonDaoHibernate {
                 session.flush();
             }
             session.getTransaction().commit();
-        } catch (final Exception ex) {
+        } catch (Exception ex) {
             ex.fillInStackTrace();
         } finally {
             HibernateUtils.closeSession(session);
@@ -50,11 +55,53 @@ public class PersonDaoHibernate {
                 session.flush();
             }
             session.getTransaction().commit();
-        } catch (final Exception ex) {
+        } catch (Exception ex) {
             ex.fillInStackTrace();
         } finally {
             HibernateUtils.closeSession(session);
         }
+    }
+
+    public IPerson findPersonByName(String name){
+        Session session = null;
+        IPerson iPerson = null;
+        String queryString ="SELECT pn FROM Person pn where pn.name = :"+ name; //TODO
+
+        try {
+            session = HibernateUtils.getSession();
+            session.beginTransaction();
+            Query query = session.createQuery(queryString);
+            iPerson = (IPerson) query.getSingleResult();
+            session.flush();
+            session.getTransaction().commit();
+
+            return iPerson;
+        }catch (Exception ex){
+            ex.fillInStackTrace();
+        }finally{
+            HibernateUtils.closeSession(session);
+        }
+        return null;
+    }
+
+    public List<IPerson> findAllPersons(){
+        Session session = null;
+        personList      = new ArrayList<>();
+
+        try{
+            session = HibernateUtils.getSession();
+            session.beginTransaction();
+            String queryString ="SELECT person FROM Person person";
+            Query query = session.createQuery(queryString);
+            personList = (List<IPerson>) query.getResultList();
+            session.flush();
+            session.getTransaction().commit();
+        }catch (Exception ex){
+            ex.fillInStackTrace();
+        }finally{
+            HibernateUtils.closeSession(session);
+        }
+        return personList;
     }
 
     /**

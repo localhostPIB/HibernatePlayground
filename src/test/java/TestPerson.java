@@ -7,6 +7,9 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Datenbank-Test.
  */
@@ -37,12 +40,23 @@ public class TestPerson {
         personDaoHibernate.savePerson(person2);
         //personDaoHibernate.deletePerson(person1);
     }
+
     @Test
-    public void savePersonTest(){
-        IPerson person3 = new Person();
-        person3.setName("Jason");
-        personDaoHibernate.savePerson(person3);
-        //TODO
+    public void findallPersonTest(){
+        List<IPerson> personTestList = new ArrayList<>();
+
+        personTestList = personDaoHibernate.findAllPersons();
+        System.out.println(personTestList.toString());
+        assertEquals(personTestList.size(), 2);
+    }
+
+    @Test
+    public void findPersonByNameTest(){
+        String testName = "Oliver";
+
+        IPerson iperson = personDaoHibernate.findPersonByName("Oliver");
+
+        assertEquals("Oliver", iperson.getName());
     }
 
     @Test

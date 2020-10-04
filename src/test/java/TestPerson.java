@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class TestPerson {
 
-   private PersonDaoHibernate personDaoHibernate;
+    private PersonDaoHibernate personDaoHibernate;
 
     /**
      * Initialisiert den Test.
@@ -28,11 +28,10 @@ public class TestPerson {
     /**
      * Datenbank wird mit ersten Werten befuellt.
      */
-    public void prepareDatabase(){
+    public void prepareDatabase() {
         personDaoHibernate = new PersonDaoHibernate();
         IPerson person1 = new Person();
         IPerson person2 = new Person();
-        IPerson person3 = new Person();
         person1.setName("Oliver");
         person2.setName("Freddy");
 
@@ -41,8 +40,22 @@ public class TestPerson {
         //personDaoHibernate.deletePerson(person1);
     }
 
+    /**
+     * Test zur SUch-Funktion.
+     */
     @Test
-    public void findallPersonTest(){
+    public void findPersonTest(){
+        int id = 1;
+
+        IPerson iperson = personDaoHibernate.findPerson(1);
+        assertEquals(iperson.getId(),id);
+    }
+
+    /**
+     * Test zum ausgeben aller Personen.
+     */
+    @Test
+    public void findAllPersonTest() {
         List<IPerson> personTestList = new ArrayList<>();
 
         personTestList = personDaoHibernate.findAllPersons();
@@ -50,20 +63,16 @@ public class TestPerson {
         assertEquals(personTestList.size(), 2);
     }
 
+    /**
+     * Test zur Such-Funktion.
+     */
     @Test
-    public void findPersonByNameTest(){
+    public void findPersonByNameTest() {
+        List<IPerson> personTestList1 = new ArrayList<>();
         String testName = "Oliver";
 
-        IPerson iperson = personDaoHibernate.findPersonByName("Oliver");
+        personTestList1 = personDaoHibernate.findPersonByName(testName);
 
-        assertEquals("Oliver", iperson.getName());
-    }
-
-    @Test
-    public void findPersonTest(){
-        int id = 1;
-
-       IPerson iperson = personDaoHibernate.findPerson(1);
-       assertEquals(iperson.getId(),id);
+        assertEquals(3, personTestList1.size());
     }
 }

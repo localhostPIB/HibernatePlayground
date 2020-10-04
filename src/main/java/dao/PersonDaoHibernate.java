@@ -40,6 +40,25 @@ public class PersonDaoHibernate {
     }
 
     /**
+     * Loescht alle eintraege aus der Datenbank.
+     */
+    public void deleteAll(){
+        Session session = null;
+        String queryString = "DELETE FROM Person";
+
+        try {
+            session = HibernateUtils.getSession();
+            session.beginTransaction();
+            Query query = session.createQuery(queryString);
+            //TODO
+        } catch (Exception ex) {
+            ex.fillInStackTrace();
+        } finally {
+            HibernateUtils.closeSession(session);
+        }
+    }
+
+    /**
      * Loescht eine Person in der Datenbank.
      *
      * @param iperson - Die Person die gespeichert werden soll.
@@ -62,28 +81,39 @@ public class PersonDaoHibernate {
         }
     }
 
-    public IPerson findPersonByName(String name){
+    /**
+     * Sucht eine Person anhand Ihres Namens.
+     *
+     * @param name - Name der Person
+     * @return -
+     */
+    public List<IPerson> findPersonByName(String name){
         Session session = null;
-        IPerson iPerson = null;
-        String queryString ="SELECT pn FROM Person pn where pn.name = :"+ name; //TODO
+        List<IPerson> personList = new ArrayList<>();
+        String queryString = "Select pn.name From Person pn where pn.name=" +"'"+name+"'";
+        //die 'name' also '' nicht vergessen ;-)
 
         try {
             session = HibernateUtils.getSession();
             session.beginTransaction();
             Query query = session.createQuery(queryString);
-            iPerson = (IPerson) query.getSingleResult();
+            personList = (List<IPerson>) query.getResultList();
             session.flush();
             session.getTransaction().commit();
 
-            return iPerson;
+            return personList;
         }catch (Exception ex){
             ex.fillInStackTrace();
         }finally{
             HibernateUtils.closeSession(session);
         }
+
         return null;
     }
 
+    /**
+     * Gibt alles Personen aus.
+     */
     public List<IPerson> findAllPersons(){
         Session session = null;
         personList      = new ArrayList<>();
@@ -101,6 +131,7 @@ public class PersonDaoHibernate {
         }finally{
             HibernateUtils.closeSession(session);
         }
+
         return personList;
     }
 

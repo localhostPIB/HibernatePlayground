@@ -6,7 +6,7 @@ import model.interfaces.IPerson;
 import javax.persistence.*;
 
 /**
- * Eine Kalsse Person mit id und Namen.
+ * Eine Model-Klasse Person mit id und Namen.
  */
 @Getter
 @Setter

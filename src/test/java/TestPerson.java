@@ -3,16 +3,18 @@ import model.classes.Person;
 import model.interfaces.IPerson;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+
+import org.junit.runners.MethodSorters;
+import org.junit.FixMethodOrder;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Datenbank-Test.
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestPerson {
 
     private PersonDaoHibernate personDaoHibernate;
@@ -22,6 +24,7 @@ public class TestPerson {
      */
     @Before
     public void setUp() {
+
         prepareDatabase();
     }
 
@@ -30,21 +33,21 @@ public class TestPerson {
      */
     public void prepareDatabase() {
         personDaoHibernate = new PersonDaoHibernate();
-        IPerson person1 = new Person();
-        IPerson person2 = new Person();
+        IPerson person1    = new Person();
+        IPerson person2    = new Person();
+
         person1.setName("Oliver");
         person2.setName("Freddy");
 
         personDaoHibernate.savePerson(person1);
         personDaoHibernate.savePerson(person2);
-        //personDaoHibernate.deletePerson(person1);
     }
 
     /**
      * Test zur SUch-Funktion.
      */
     @Test
-    public void findPersonTest(){
+    public void a_findPersonTest(){
         int id = 1;
 
         IPerson iperson = personDaoHibernate.findPerson(1);
@@ -55,24 +58,36 @@ public class TestPerson {
      * Test zum ausgeben aller Personen.
      */
     @Test
-    public void findAllPersonTest() {
-        List<IPerson> personTestList = new ArrayList<>();
+    public void b_findAllPersonTest() {
+        List<IPerson> personTestList;
 
         personTestList = personDaoHibernate.findAllPersons();
-        System.out.println(personTestList.toString());
-        assertEquals(personTestList.size(), 2);
+        assertEquals(personTestList.size(), 4);
     }
 
     /**
      * Test zur Such-Funktion.
      */
     @Test
-    public void findPersonByNameTest() {
-        List<IPerson> personTestList1 = new ArrayList<>();
+    public void c_findPersonByNameTest() {
+        List<IPerson> personTestList1;
         String testName = "Oliver";
 
         personTestList1 = personDaoHibernate.findPersonByName(testName);
 
         assertEquals(3, personTestList1.size());
     }
+
+    /**
+     * Testet ob alles geloescht wird.
+     */
+    @Test
+     public void d_deleteAllTest(){
+        List<IPerson> personTestList2;
+        personDaoHibernate.deleteAll();
+
+        personTestList2 = personDaoHibernate.findAllPersons();
+
+        assertEquals(personTestList2.size(), 0);
+     }
 }

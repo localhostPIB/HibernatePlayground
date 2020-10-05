@@ -3,6 +3,7 @@ package dao;
 import model.classes.Person;
 import model.interfaces.IPerson;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import util.HibernateUtils;
 import validator.PersonValidator;
 
@@ -44,13 +45,11 @@ public class PersonDaoHibernate {
      */
     public void deleteAll(){
         Session session = null;
-        String queryString = "DELETE FROM Person";
 
         try {
-            session = HibernateUtils.getSession();
-            session.beginTransaction();
-            Query query = session.createQuery(queryString);
-            //TODO
+            for(IPerson iPerson : findAllPersons()){
+                deletePerson(iPerson);
+            }
         } catch (Exception ex) {
             ex.fillInStackTrace();
         } finally {

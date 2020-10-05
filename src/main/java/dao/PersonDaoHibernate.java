@@ -3,7 +3,6 @@ package dao;
 import model.classes.Person;
 import model.interfaces.IPerson;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import util.HibernateUtils;
 import validator.PersonValidator;
 
@@ -150,7 +149,6 @@ public class PersonDaoHibernate {
             session.getTransaction().commit();
 
             return iperson;
-
         } catch (final Exception ex) {
             ex.fillInStackTrace();
         } finally {

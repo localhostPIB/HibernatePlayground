@@ -149,7 +149,7 @@ public class PersonDaoHibernate {
             session.getTransaction().commit();
 
             return iperson;
-        } catch (final Exception ex) {
+        } catch (Exception ex) {
             ex.fillInStackTrace();
         } finally {
             HibernateUtils.closeSession(session);

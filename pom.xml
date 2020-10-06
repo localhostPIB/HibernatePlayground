@@ -19,6 +19,7 @@
             <maven_compiler_plugin>3.8.1</maven_compiler_plugin>
             <hibernate>5.4.20.Final</hibernate>
             <postgresql>42.2.16</postgresql>
+            <sqlited>0.1.0</sqlited>
             <lombok>1.18.12</lombok>
             <sqlite>3.32.3.2</sqlite>
             <junit_4>4.13</junit_4>
@@ -31,6 +32,14 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven_compiler_plugin}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.gwenn/sqlite-dialect -->
+        <dependency>
+            <groupId>com.github.gwenn</groupId>
+            <artifactId>sqlite-dialect</artifactId>
+            <version>${sqlited}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>

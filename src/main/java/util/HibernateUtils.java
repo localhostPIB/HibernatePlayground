@@ -23,10 +23,12 @@ public class HibernateUtils {
     }
 
     public static Session getSession() {
+
         return getSessionFactory().getCurrentSession();
     }
 
     public static SessionFactory getSessionFactory() {
+
         return sessionFactory;
     }
 

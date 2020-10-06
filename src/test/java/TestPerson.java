@@ -81,7 +81,7 @@ public class TestPerson {
     /**
      * Testet ob alles geloescht wird.
      */
-    @Test
+     @Test
      public void d_deleteAllTest(){
         List<IPerson> personTestList2;
         personDaoHibernate.deleteAll();

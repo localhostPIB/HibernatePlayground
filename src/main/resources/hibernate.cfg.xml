@@ -4,7 +4,8 @@
 
         <hibernate-configuration>
         <session-factory>
-       <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
+      <!--PostgreSQL settings-->
+      <!-- <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
        <property name="hibernate.connection.username">postgres</property>
        <property name="hibernate.connection.password">1234567890</property>
@@ -12,7 +13,24 @@
        <property name="hibernate.current_session_context_class">thread</property>
        <property name="hibernate.show_sql">true</property>
        <property name="hibernate.formate_sql">true</property>
-       <property name="hbm2ddl.auto">create-drop</property>
+       <property name="hbm2ddl.auto">create-drop</property>-->
+
+            <!--SQLite settings-->
+            <property name="connection.driver_class">org.sqlite.JDBC</property>
+            <property name="dialect">org.hibernate.dialect.SQLiteDialect</property>
+            <property name="connection.url">jdbc:sqlite:test.sqlite</property>
+            <property name="connection.username"></property>
+            <property name="connection.password"></property>
+            <property name="hibernate.hbm2ddl.auto">create-drop</property>
+            <property name="show_sql">true</property>
+            <property name="format_sql">true</property>
+
+            <!--SQLITE Achtung: ohne diese angabe gibt es eine
+            org.hibernate.HibernateException: No CurrentSessionContext configured
+            https://www.journaldev.com/2903/org-hibernate-hibernateexception-no-currentsessioncontext-configured-->
+            <property name="hibernate.current_session_context_class">
+                org.hibernate.context.internal.ThreadLocalSessionContext
+            </property>
 
             <mapping class="model.classes.Person"/>
         </session-factory>

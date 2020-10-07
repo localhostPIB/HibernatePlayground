@@ -16,6 +16,21 @@ import java.util.List;
 public class PersonDaoHibernate {
     private List<IPerson> personList;
 
+    private static PersonDaoHibernate pDaoInstance = null;
+
+    /**
+     * Singelton fuer die Datenbankzugriffe.
+     *
+     * @return - 'Eine' Instanz/Objekt von PersonDaoHibernate.
+     */
+    public static PersonDaoHibernate getInstance(){
+        if(pDaoInstance == null){
+            return new PersonDaoHibernate();
+        }
+
+        return  pDaoInstance;
+    }
+
     /**
      * Speichert eine Person in die Datenbank ab.
      *
@@ -27,7 +42,7 @@ public class PersonDaoHibernate {
         try {
             session = HibernateUtils.getSession();
             session.beginTransaction();
-            if (PersonValidator.validatePersonObject(iperson) == true) {
+            if (PersonValidator.validatePersonObject(iperson)) {
                 session.saveOrUpdate(iperson);
                 session.flush();
             }
@@ -43,16 +58,12 @@ public class PersonDaoHibernate {
      * Loescht alle eintraege aus der Datenbank.
      */
     public void deleteAll(){
-        Session session = null;
-
         try {
             for(IPerson iPerson : findAllPersons()){
                 deletePerson(iPerson);
             }
         } catch (Exception ex) {
             ex.fillInStackTrace();
-        } finally {
-            HibernateUtils.closeSession(session);
         }
     }
 
@@ -67,7 +78,7 @@ public class PersonDaoHibernate {
         try {
             session = HibernateUtils.getSession();
             session.beginTransaction();
-            if (PersonValidator.validatePersonObject(iperson) == true) {
+            if (PersonValidator.validatePersonObject(iperson)) {
                 session.delete(iperson);
                 session.flush();
             }
@@ -87,7 +98,7 @@ public class PersonDaoHibernate {
      */
     public List<IPerson> findPersonByName(String name){
         Session session = null;
-        List<IPerson> personList = new ArrayList<>();
+        List<IPerson> personList;
         String queryString = "Select pn.name From Person pn where pn.name=" +"'"+name+"'";
         //die 'name' also '' nicht vergessen ;-)
 

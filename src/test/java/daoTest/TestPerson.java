@@ -1,9 +1,10 @@
+package daoTest;
+
 import dao.PersonDaoHibernate;
 import model.classes.Person;
 import model.interfaces.IPerson;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.runners.MethodSorters;
 import org.junit.FixMethodOrder;
 import org.junit.Before;
@@ -17,7 +18,7 @@ import java.util.List;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestPerson {
 
-    private PersonDaoHibernate personDaoHibernate;
+    private PersonDaoHibernate personDaoHibernate = PersonDaoHibernate.getInstance();
 
     /**
      * Initialisiert den Test.
@@ -32,7 +33,6 @@ public class TestPerson {
      * Datenbank wird mit ersten Werten befuellt.
      */
     public void prepareDatabase() {
-        personDaoHibernate = new PersonDaoHibernate();
         IPerson person1    = new Person();
         IPerson person2    = new Person();
 
@@ -81,7 +81,7 @@ public class TestPerson {
     /**
      * Testet ob alles geloescht wird.
      */
-     @Test
+    @Test
      public void d_deleteAllTest(){
         List<IPerson> personTestList2;
         personDaoHibernate.deleteAll();

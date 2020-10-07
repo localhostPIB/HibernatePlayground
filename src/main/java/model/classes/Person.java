@@ -4,6 +4,7 @@ import lombok.*;
 import model.interfaces.IPerson;
 
 import javax.persistence.*;
+import java.io.File;
 
 /**
  * Eine Model-Klasse Person mit id und Namen.
@@ -12,7 +13,6 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "Person")
 public class Person implements IPerson {
@@ -21,5 +21,4 @@ public class Person implements IPerson {
     private int id;
 
     private String name;
-
 }

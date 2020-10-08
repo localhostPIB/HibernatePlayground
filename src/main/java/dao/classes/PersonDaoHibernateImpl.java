@@ -1,5 +1,6 @@
-package dao;
+package dao.classes;
 
+import dao.interfaces.IPersonDao;
 import model.classes.Person;
 import model.interfaces.IPerson;
 import org.hibernate.Session;
@@ -13,19 +14,19 @@ import java.util.List;
 /**
  * Die Methoden welche fuer die Datenbank wichtig sind.
  */
-public class PersonDaoHibernate {
+public class PersonDaoHibernateImpl implements IPersonDao {
     private List<IPerson> personList;
 
-    private static PersonDaoHibernate pDaoInstance = null;
+    private static PersonDaoHibernateImpl pDaoInstance = null;
 
     /**
      * Singelton fuer die Datenbankzugriffe.
      *
      * @return - 'Eine' Instanz/Objekt von PersonDaoHibernate.
      */
-    public static PersonDaoHibernate getInstance(){
+    public static PersonDaoHibernateImpl getInstance(){
         if(pDaoInstance == null){
-            return new PersonDaoHibernate();
+            return new PersonDaoHibernateImpl();
         }
 
         return  pDaoInstance;

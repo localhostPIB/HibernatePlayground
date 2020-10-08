@@ -1,6 +1,7 @@
 package daoTest;
 
-import dao.PersonDaoHibernate;
+import dao.classes.PersonDaoHibernateImpl;
+import dao.interfaces.IPersonDao;
 import model.classes.Person;
 import model.interfaces.IPerson;
 
@@ -16,9 +17,9 @@ import java.util.List;
  * Datenbank-Test.
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestPerson {
+public class TestPersonDAO {
 
-    private PersonDaoHibernate personDaoHibernate = PersonDaoHibernate.getInstance();
+    private IPersonDao personDaoHibernate = PersonDaoHibernateImpl.getInstance();
 
     /**
      * Initialisiert den Test.

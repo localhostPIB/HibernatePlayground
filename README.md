@@ -6,7 +6,7 @@ Für die spielerei nutze ich das Build-Management-Tool Maven(v. 3.6.3) von der A
 * [Maven](https://maven.apache.org/)
 
 #### Vorraussetzungen
-Um das Projekt zu starten werden die unten aufgeführten Frameworks und Libraries benötigt, welche in der `pom.xml` bereitgestellt sind und 
+Um das "Projekt" zu starten werden die unten aufgeführten Frameworks und Libraries benötigt, welche in der `pom.xml` bereitgestellt sind und 
 vor Programmstart (von Maven) runtergeladen werden (können). 
 
 * [Hibernate](https://hibernate.org/)

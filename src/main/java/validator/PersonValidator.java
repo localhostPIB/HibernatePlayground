@@ -3,7 +3,7 @@ package validator;
 import model.interfaces.IPerson;
 
 /**
- * Validiert das Person-Objekt.
+ * Validiert ein Person-Objekt.
  */
 public class PersonValidator {
 

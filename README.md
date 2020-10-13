@@ -1,4 +1,4 @@
-# HibernatePlayground
+# Hibernate Playground v0.5
 Playground of destruction ;-)
 
 ## Built With

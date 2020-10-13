@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Die Methoden welche fuer die Datenbank wichtig sind.
+ * Die Methoden welche fuer die Datenbank (Tabelle fuer die Person) wichtig sind.
  */
 public class PersonDaoHibernateImpl implements IPersonDao {
     private List<IPerson> personList;
@@ -35,16 +35,17 @@ public class PersonDaoHibernateImpl implements IPersonDao {
     /**
      * Speichert eine Person in die Datenbank ab.
      *
-     * @param iperson - Die Person die gespeichert werden soll.
+     * @param iPerson - Die Person die gespeichert werden soll.
      */
-    public void savePerson(IPerson iperson) {
+    @Override
+    public void savePerson(IPerson iPerson) {
         Session session = null;
 
         try {
             session = HibernateUtils.getSession();
             session.beginTransaction();
-            if (PersonValidator.validatePersonObject(iperson)) {
-                session.saveOrUpdate(iperson);
+            if (PersonValidator.validatePersonObject(iPerson)) {
+                session.saveOrUpdate(iPerson);
                 session.flush();
             }
             session.getTransaction().commit();
@@ -58,6 +59,7 @@ public class PersonDaoHibernateImpl implements IPersonDao {
     /**
      * Loescht alle eintraege aus der Datenbank.
      */
+    @Override
     public void deleteAll(){
         try {
             for(IPerson iPerson : findAllPersons()){
@@ -71,16 +73,17 @@ public class PersonDaoHibernateImpl implements IPersonDao {
     /**
      * Loescht eine Person in der Datenbank.
      *
-     * @param iperson - Die Person die gespeichert werden soll.
+     * @param iPerson - Die Person die gespeichert werden soll.
      */
-    public void deletePerson(IPerson iperson) {
+    @Override
+    public void deletePerson(IPerson iPerson) {
         Session session = null;
 
         try {
             session = HibernateUtils.getSession();
             session.beginTransaction();
-            if (PersonValidator.validatePersonObject(iperson)) {
-                session.delete(iperson);
+            if (PersonValidator.validatePersonObject(iPerson)) {
+                session.delete(iPerson);
                 session.flush();
             }
             session.getTransaction().commit();
@@ -94,9 +97,10 @@ public class PersonDaoHibernateImpl implements IPersonDao {
     /**
      * Sucht eine Person anhand Ihres Namens.
      *
-     * @param name - Name der Person
-     * @return -
+     * @param name - Name der Person(en).
+     * @return - Liste mit moegleichen Personen.
      */
+    @Override
     public List<IPerson> findPersonByName(String name){
         Session session = null;
         List<IPerson> personList;
@@ -122,8 +126,11 @@ public class PersonDaoHibernateImpl implements IPersonDao {
     }
 
     /**
-     * Gibt alles Personen aus.
+     * Gibt alle Personen aus.
+     *
+     * @return - Liste mit allen Personen.
      */
+    @Override
     public List<IPerson> findAllPersons(){
         Session session = null;
         personList      = new ArrayList<>();
@@ -150,6 +157,7 @@ public class PersonDaoHibernateImpl implements IPersonDao {
      *
      * @param id - id der zu suchenden Person.
      */
+    @Override
     public IPerson findPerson(int id) {
         Session session = null;
 

@@ -33,6 +33,7 @@
             </property>
 
             <mapping class="model.classes.Person"/>
+            <mapping class="model.classes.Band"/>
         </session-factory>
 
         </hibernate-configuration>

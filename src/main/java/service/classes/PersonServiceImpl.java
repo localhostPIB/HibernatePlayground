@@ -19,7 +19,7 @@ public class PersonServiceImpl implements IPersonService {
 
    public static IPersonService getInstance(){
        if(personService == null){
-        return personService = new PersonServiceImpl();
+        return new PersonServiceImpl();
        }
        return personService;
    }
@@ -36,6 +36,7 @@ public class PersonServiceImpl implements IPersonService {
      */
     @Override
     public void savePerson(IPerson iPerson) {
+
         personDao.savePerson(iPerson);
     }
 
@@ -89,7 +90,7 @@ public class PersonServiceImpl implements IPersonService {
      * @return - Gefundene Person.
      */
     @Override
-    public IPerson findPerson(int id) {
+    public IPerson findPersonById(int id) {
 
         return personDao.findPerson(id);
     }

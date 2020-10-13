@@ -48,7 +48,7 @@ public class TestPersonService {
     public void a_findPersonTest(){
         int id = 1;
 
-        IPerson iperson = personService.findPerson(1);
+        IPerson iperson = personService.findPersonById(1);
         assertEquals(iperson.getId(),id);
     }
 

@@ -16,5 +16,5 @@ public interface IPersonService {
 
     List<IPerson> findAllPersons();
 
-    IPerson findPerson(int id);
+    IPerson findPersonById(int id);
 }

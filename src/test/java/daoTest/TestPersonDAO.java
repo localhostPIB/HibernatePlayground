@@ -14,7 +14,7 @@ import org.junit.Test;
 import java.util.List;
 
 /**
- * Datenbank-Test.
+ * Datenbank-Test fuer die Person.
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestPersonDAO {
@@ -45,10 +45,10 @@ public class TestPersonDAO {
     }
 
     /**
-     * Test zur SUch-Funktion.
+     * Test zur Such-Funktion.
      */
     @Test
-    public void a_findPersonTest(){
+    public void a_findPersonByIdTest(){
         int id = 1;
 
         IPerson iperson = personDaoHibernate.findPerson(1);
@@ -59,11 +59,12 @@ public class TestPersonDAO {
      * Test zum ausgeben aller Personen.
      */
     @Test
-    public void b_findAllPersonTest() {
+    public void b_findAllPersonsTest() {
         List<IPerson> personTestList;
+        int testsize = 4;
 
         personTestList = personDaoHibernate.findAllPersons();
-        assertEquals(personTestList.size(), 4);
+        assertEquals(personTestList.size(), testsize);
     }
 
     /**
@@ -80,10 +81,10 @@ public class TestPersonDAO {
     }
 
     /**
-     * Testet ob alles geloescht wird.
+     * Testet ob alle Personen geloescht werden.
      */
     @Test
-     public void d_deleteAllTest(){
+     public void d_deleteAllEntryTest(){
         List<IPerson> personTestList2;
         personDaoHibernate.deleteAll();
 

@@ -1,17 +1,23 @@
 package model.classes;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import model.interfaces.IBand;
+import model.interfaces.IPerson;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Eine Band in der Personen drin sind.
  */
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
 @Entity
 public class Band implements IBand {
 
@@ -21,7 +27,8 @@ public class Band implements IBand {
 
     private String name;
 
-    @ManyToOne
-    private Person person;
+    @OneToMany(targetEntity = Person.class, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "band_id")
+    private List<IPerson> person;
 
 }

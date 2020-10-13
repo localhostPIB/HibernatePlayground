@@ -2,15 +2,19 @@ package model.interfaces;
 
 import model.classes.Person;
 
+import java.util.List;
+
 
 public interface IBand {
+
+    int getId();
 
     String getName();
 
     void setName(String Name);
 
-    Person getPerson();
+    List<IPerson> getPerson();
 
-    void setPerson(Person person);
+    void setPerson(List<IPerson> person);
 
 }

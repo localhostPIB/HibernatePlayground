@@ -83,7 +83,7 @@ public class TestPersonDAO {
     /**
      * Testet ob alle Personen geloescht werden.
      */
-    @Test
+    //@Test
      public void d_deleteAllEntryTest(){
         List<IPerson> personTestList2;
         personDaoHibernate.deleteAll();

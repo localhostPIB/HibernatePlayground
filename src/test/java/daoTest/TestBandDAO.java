@@ -45,6 +45,7 @@ public class TestBandDAO {
 
         IBand band1 = new Band();
         IBand band2 = new Band();
+        IBand band3 = new Band();
 
         IPerson person1 = new Person();
         IPerson person2 = new Person();
@@ -67,10 +68,11 @@ public class TestBandDAO {
 
         band1.setName("Rammstein");
         band2.setName("Slayer");
+        band3.setName("Nine Inch Nails");
 
         bandDaoHibernate.saveBand(band1);
         bandDaoHibernate.saveBand(band2);
-
+        bandDaoHibernate.saveBand(band3);
     }
 
     /**
@@ -79,7 +81,7 @@ public class TestBandDAO {
     @Test
     public void a_FindAllBandsTest(){
         List<IBand> bandTestList;
-        int testsize = 2;
+        int testsize = 3;
 
         bandTestList = bandDaoHibernate.findAllBands();
         assertEquals(bandTestList.size(),testsize);
@@ -90,7 +92,7 @@ public class TestBandDAO {
      */
     @Test
     public void b_findBandByIdTest(){
-        int test_Id = 3;
+        int test_Id = 4;
 
         IBand iBand = bandDaoHibernate.findBand(test_Id);
         assertEquals(iBand.getId(),test_Id);
@@ -98,7 +100,11 @@ public class TestBandDAO {
 
     @Test
     public void c_findBandByNameTest(){
-            //TODO
+        int test_Size = 3;
+        String test_String = "Slayer";
+
+        List<IBand> iBandList = bandDaoHibernate.findBandByName(test_String);
+        assertEquals(iBandList.size(),test_Size);
     }
 
     /**

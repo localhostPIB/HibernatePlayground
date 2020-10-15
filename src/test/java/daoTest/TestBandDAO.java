@@ -10,6 +10,7 @@ import model.interfaces.IBand;
 import model.interfaces.IPerson;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -88,7 +89,7 @@ public class TestBandDAO {
     }
 
     /**
-     * Test zur Such-Funktion.
+     * Test zur Such-Funktion die nach einer Id in der Datenbank sucht.
      */
     @Test
     public void b_findBandByIdTest(){
@@ -98,6 +99,9 @@ public class TestBandDAO {
         assertEquals(iBand.getId(),test_Id);
     }
 
+    /**
+     * Testet die Such-Funktion die nach Namen in der Datenbank sucht.
+     */
     @Test
     public void c_findBandByNameTest(){
         int test_Size = 3;

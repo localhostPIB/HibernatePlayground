@@ -20,5 +20,6 @@ public class Person implements IPerson {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
+    @Column(name = "Bandmitglied")
     private String name;
 }

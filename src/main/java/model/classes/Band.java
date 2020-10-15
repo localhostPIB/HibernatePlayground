@@ -25,6 +25,7 @@ public class Band implements IBand {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
+    @Column(name = "Bandname")
     private String name;
 
     @OneToMany(targetEntity = Person.class, cascade=CascadeType.ALL, fetch = FetchType.EAGER)

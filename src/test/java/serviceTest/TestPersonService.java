@@ -19,7 +19,7 @@ public class TestPersonService {
    private IPersonService personService = PersonServiceImpl.getInstance();
 
     /**
-     * Initialisiert den Test.
+     * Initialisiert den Test fuer den Personen-Service.
      */
     @Before
     public void setUp() {

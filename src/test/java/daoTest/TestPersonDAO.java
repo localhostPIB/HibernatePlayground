@@ -1,17 +1,12 @@
 package daoTest;
 
-import dao.classes.BandDaoHibernateImpl;
 import dao.classes.PersonDaoHibernateImpl;
-import dao.interfaces.IBandDao;
 import dao.interfaces.IPersonDao;
-import model.classes.Band;
 import model.classes.Person;
-import model.interfaces.IBand;
 import model.interfaces.IPerson;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Ignore;
 import org.junit.runners.MethodSorters;
 import org.junit.FixMethodOrder;
 import org.junit.Before;
@@ -26,7 +21,6 @@ import java.util.List;
 public class TestPersonDAO {
 
     private IPersonDao personDaoHibernate = PersonDaoHibernateImpl.getInstance();
-    private IBandDao   bandDaoHibernate   = BandDaoHibernateImpl.getInstance();
 
     /**
      * Initialisiert den Test.
@@ -43,13 +37,8 @@ public class TestPersonDAO {
     public void prepareDatabase() {
         IPerson person1    = new Person();
         IPerson person2    = new Person();
-        IBand   band       = new Band();
-        band.setName("System of a Down");
-        bandDaoHibernate.saveBand(band);
-
-        person1.setName("Kurt");
-        person2.setName("Serj");
-        person2.setBand(band);
+        person1.setName("Oliver");
+        person2.setName("Kurt");
 
         personDaoHibernate.savePerson(person1);
         personDaoHibernate.savePerson(person2);
@@ -95,7 +84,6 @@ public class TestPersonDAO {
      * Testet ob alle Personen geloescht werden.
      */
      @Test
-     @Ignore
      public void d_deleteAllEntryTest(){
         List<IPerson> personTestList2;
         personDaoHibernate.deleteAll();

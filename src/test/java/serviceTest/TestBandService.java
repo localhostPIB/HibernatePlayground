@@ -9,7 +9,6 @@ import model.interfaces.IBand;
 import model.interfaces.IPerson;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import service.classes.BandServiceImpl;
@@ -72,6 +71,7 @@ public class TestBandService {
         bandService.saveBand(band1);
         bandService.saveBand(band2);
         bandService.saveBand(band3);
+
     }
 
     /**
@@ -113,7 +113,6 @@ public class TestBandService {
      * Testet ob alle Bands geloescht werden.
      */
     @Test
-    @Ignore
     public void d_deleteAllEntryTest(){
         List<IBand> bandTestList2;
         int testsize_Zero = 0;

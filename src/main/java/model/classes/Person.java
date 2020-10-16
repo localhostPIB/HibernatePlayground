@@ -1,7 +1,6 @@
 package model.classes;
 
 import lombok.*;
-import model.interfaces.IBand;
 import model.interfaces.IPerson;
 
 import javax.persistence.*;
@@ -22,8 +21,4 @@ public class Person implements IPerson {
 
     @Column(name = "Bandmitglied", nullable = false)
     private String name;
-
-    @ManyToOne(targetEntity = Band.class, cascade=CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @JoinColumn(name = "band_id")
-    private IBand band;
 }

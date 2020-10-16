@@ -25,12 +25,12 @@ public class Band implements IBand {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
-    @Column(name = "Bandname")
+    @Column(name = "Bandname", nullable = false)
     private String name;
 
-    @OneToMany(targetEntity = Person.class, cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Person.class, cascade=CascadeType.REMOVE, fetch = FetchType.EAGER)
     //EAGER loest org.hibernate.LazyInitializationException: could not initialize proxy problem, aber nur mit bedachtsetzen.
-    @JoinColumn(name = "band_id")
+    @JoinColumn(name = "person_id")
     private List<IPerson> person;
 
 }

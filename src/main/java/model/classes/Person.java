@@ -1,10 +1,10 @@
 package model.classes;
 
 import lombok.*;
+import model.interfaces.IBand;
 import model.interfaces.IPerson;
 
 import javax.persistence.*;
-import java.io.File;
 
 /**
  * Eine Model-Klasse Person mit id und Namen.
@@ -20,6 +20,10 @@ public class Person implements IPerson {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
-    @Column(name = "Bandmitglied")
+    @Column(name = "Bandmitglied", nullable = false)
     private String name;
+
+    @ManyToOne(targetEntity = Band.class, cascade=CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "band_id")
+    private IBand band;
 }

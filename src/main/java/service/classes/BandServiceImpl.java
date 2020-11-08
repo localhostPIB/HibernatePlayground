@@ -3,6 +3,7 @@ package service.classes;
 import dao.classes.BandDaoHibernateImpl;
 import dao.interfaces.IBandDao;
 import model.interfaces.IBand;
+import model.interfaces.IPerson;
 import service.interfaces.IBandService;
 
 import java.util.List;
@@ -52,6 +53,14 @@ public class BandServiceImpl implements IBandService {
         bandDao.deleteBand(iBand);
     }
 
+    @Override
+    public List<IPerson> findPersonByBand(IBand iBand){
+        IBand iBand1 = findBandById(iBand.getId());
+        List<IPerson> iBandList = iBand1.getPerson();
+
+        return  iBandList;
+    }
+
     /**
      * Loescht alle Band saus der Datenbank.
      */
@@ -69,6 +78,7 @@ public class BandServiceImpl implements IBandService {
      */
     @Override
     public IBand findBandById(int id) {
+
         return bandDao.findBand(id);
     }
 
@@ -80,6 +90,7 @@ public class BandServiceImpl implements IBandService {
      */
     @Override
     public List<IBand> findBandByName(String bandName) {
+
         return bandDao.findBandByName(bandName);
     }
 
@@ -90,6 +101,7 @@ public class BandServiceImpl implements IBandService {
      */
     @Override
     public List<IBand> findAllBands() {
+
         return bandDao.findAllBands();
     }
 }

@@ -1,9 +1,7 @@
 package model.interfaces;
 
-import model.classes.Person;
 
 import java.util.List;
-
 
 public interface IBand {
 
@@ -16,5 +14,7 @@ public interface IBand {
     List<IPerson> getPerson();
 
     void setPerson(List<IPerson> person);
+
+    void add(IPerson person);
 
 }

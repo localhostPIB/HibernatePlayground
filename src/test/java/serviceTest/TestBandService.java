@@ -44,14 +44,17 @@ public class TestBandService {
         IBand band1 = new Band();
         IBand band2 = new Band();
         IBand band3 = new Band();
+        IBand band4 = new Band();
 
         IPerson person1 = new Person();
         IPerson person2 = new Person();
         IPerson person3 = new Person();
+        IPerson person4 = new Person();
 
         person1.setName("Till");
         person2.setName("Tom");
         person3.setName("Oliver");
+        person4.setName("Test_Member");
 
         personList1.add(person1);
         personList1.add(person3);
@@ -67,10 +70,12 @@ public class TestBandService {
         band1.setName("Rammstein");
         band2.setName("Slayer");
         band3.setName("Nine Inch Nails");
-
+        band4.setName("Test_Band");
+        band4.add(person4);
         bandService.saveBand(band1);
         bandService.saveBand(band2);
         bandService.saveBand(band3);
+        bandService.saveBand(band4);
 
     }
 
@@ -80,7 +85,7 @@ public class TestBandService {
     @Test
     public void a_FindAllBandsTest(){
         List<IBand> bandTestList;
-        int testsize = 3;
+        int testsize = 4;
 
         bandTestList = bandService.findAllBands();
         assertEquals(bandTestList.size(),testsize);
@@ -94,6 +99,8 @@ public class TestBandService {
         int test_Id = 4;
 
         IBand iBand = bandService.findBandById(test_Id);
+        List<IPerson> band = bandService.findPersonByBand(iBand);
+        System.out.println("Band: " + band.toString());
         assertEquals(iBand.getId(),test_Id);
     }
 

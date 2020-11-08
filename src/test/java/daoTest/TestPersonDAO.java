@@ -52,6 +52,7 @@ public class TestPersonDAO {
         int id = 1;
 
         IPerson iperson = personDaoHibernate.findPerson(1);
+
         assertEquals(iperson.getId(),id);
     }
 

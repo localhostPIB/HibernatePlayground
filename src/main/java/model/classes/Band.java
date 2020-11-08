@@ -1,14 +1,12 @@
 package model.classes;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import model.interfaces.IBand;
 import model.interfaces.IPerson;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +16,7 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="Band")
 public class Band implements IBand {
@@ -29,9 +28,23 @@ public class Band implements IBand {
     @Column(name = "Bandname", nullable = false)
     private String name;
 
-    @OneToMany(targetEntity = Person.class, cascade=CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(targetEntity = Person.class, cascade=CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     //EAGER loest org.hibernate.LazyInitializationException: could not initialize proxy problem, aber nur mit bedachtsetzen.
     @JoinColumn(name = "band_id")
-    private List<IPerson> person;
+    private List<IPerson> personList = new ArrayList<>();
 
+    @Override
+    public List<IPerson> getPerson() {
+        return this.personList;
+    }
+
+    @Override
+    public void setPerson(List<IPerson> person) {
+        this.personList = person;
+    }
+
+    @Override
+    public void add(IPerson person){
+        personList.add(person);
+    }
 }

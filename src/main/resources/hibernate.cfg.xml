@@ -5,16 +5,14 @@
         <hibernate-configuration>
         <session-factory>
       <!--PostgreSQL settings-->
-      <!-- <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
-       <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-       <property name="hibernate.connection.username">postgres</property>
-       <property name="hibernate.connection.password">1234567890</property>
-            <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/prog3</property>
-       <property name="hibernate.current_session_context_class">thread</property>
-       <property name="hibernate.show_sql">true</property>
-       <property name="hibernate.formate_sql">true</property>
-       <property name="hbm2ddl.auto">create-drop</property>-->
-
+            <!-- MySQL mit WAMP -->
+            <!--
+            <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+            <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+            <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/test</property>
+            <property name="hibernate.connection.username">root</property>
+            <property name="hibernate.connection.password"></property>
+            -->
             <!--SQLite settings-->
             <property name="connection.driver_class">org.sqlite.JDBC</property>
             <property name="dialect">org.hibernate.dialect.SQLiteDialect</property>

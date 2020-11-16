@@ -48,6 +48,9 @@ public class BandDaoHibernateImpl implements IBandDao {
     /**
      * Gibt alle Band aus.
      *
+     * JOIN FETCH verhindert eine Lazy Exception.
+     *  https://www.heise.de/developer/artikel/Hibernate-Tipp-Wie-sollten-lazy-geladene-Beziehungen-initialisiert-werden-3799298.html
+     *
      * @return - Liste mit allen Bands.
      */
     @Override
@@ -58,7 +61,7 @@ public class BandDaoHibernateImpl implements IBandDao {
         try{
             session = HibernateUtils.getSession();
             session.beginTransaction();
-            String queryString ="SELECT band FROM Band band";
+            String queryString ="SELECT band FROM Band band JOIN FETCH band.personList";
             Query query = session.createQuery(queryString);
             bandList = (List<IBand>) query.getResultList();
             session.flush();

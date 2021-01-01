@@ -41,6 +41,17 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     /**
+     * Service zum updaten der Personen Daten.
+     *
+     * @param iPerson
+     */
+    @Override
+    public void updatePerson(IPerson iPerson){
+
+        personDao.updatePerson(iPerson);
+    }
+
+    /**
      * Service zum Löschen einer Person.
      *
      * @param iPerson -zu loeschende Person.

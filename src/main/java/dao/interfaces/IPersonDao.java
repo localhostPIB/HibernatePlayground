@@ -9,6 +9,8 @@ public interface IPersonDao {
 
     void deleteAll();
 
+    void savePersonWithQueries(IPerson iPerson);
+
     void deletePerson(IPerson iperson);
 
     List<IPerson> findPersonByName(String name);
@@ -16,4 +18,6 @@ public interface IPersonDao {
     List<IPerson> findAllPersons();
 
     IPerson findPerson(int id);
+
+    void updatePerson(IPerson iPerson);
 }

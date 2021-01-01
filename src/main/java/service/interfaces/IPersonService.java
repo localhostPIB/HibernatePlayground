@@ -17,4 +17,6 @@ public interface IPersonService {
     List<IPerson> findAllPersons();
 
     IPerson findPersonById(int id);
+
+    void updatePerson(IPerson iPerson);
 }

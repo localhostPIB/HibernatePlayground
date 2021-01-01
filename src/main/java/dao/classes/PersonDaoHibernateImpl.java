@@ -57,6 +57,30 @@ public class PersonDaoHibernateImpl implements IPersonDao {
     }
 
     /**
+     * Updated die Daten des Personen-Objekts.
+     *
+     * @param iPerson
+     */
+    @Override
+    public void updatePerson(IPerson iPerson) {
+        Session session = null;
+            try {
+                session = HibernateUtils.getSession();
+                session.beginTransaction();
+                if (PersonValidator.validatePersonObject(iPerson)) {
+                    session.update(iPerson);
+                    session.flush();
+                }
+                session.getTransaction().commit();
+            } catch (Exception ex) {
+                ex.fillInStackTrace();
+            } finally {
+                HibernateUtils.closeSession(session);
+            }
+        }
+
+
+    /**
      * Loescht alle eintraege aus der Datenbank.
      */
     @Override
@@ -68,6 +92,16 @@ public class PersonDaoHibernateImpl implements IPersonDao {
         } catch (Exception ex) {
             ex.fillInStackTrace();
         }
+    }
+
+    /**
+     * Speichert eine Person anhand der Query.
+     *
+     * @param iPerson
+     */
+    @Override
+    public void savePersonWithQueries(IPerson iPerson) {
+        //todo
     }
 
     /**

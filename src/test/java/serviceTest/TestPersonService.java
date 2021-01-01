@@ -77,10 +77,22 @@ public class TestPersonService {
     }
 
     /**
+     * Testet die Update-Funktion.
+     */
+    @Test
+    public void d_updatePersonTest(){
+        int id = 1;
+
+        IPerson iperson = personService.findPersonById(1);
+        iperson.setName("Christian");
+        personService.updatePerson(iperson);
+    }
+
+    /**
      * Testet ob alles geloescht wird.
      */
     @Test
-    public void d_deleteAllTest(){
+    public void e_deleteAllTest(){
         List<IPerson> personTestList2;
         personService.deleteAllPersons();
 

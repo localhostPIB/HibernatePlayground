@@ -9,7 +9,7 @@ public interface IPersonDao {
 
     void deleteAll();
 
-    void savePersonWithQueries(IPerson iPerson);
+    List<IPerson> personWithO();
 
     void deletePerson(IPerson iperson);
 

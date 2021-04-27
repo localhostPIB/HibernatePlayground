@@ -8,8 +8,7 @@ import util.HibernateUtils;
 import validator.PersonValidator;
 
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Die Methoden welche fuer die Datenbank (Tabelle fuer die Person) wichtig sind.
@@ -95,13 +94,32 @@ public class PersonDaoHibernateImpl implements IPersonDao {
     }
 
     /**
-     * Speichert eine Person anhand der Query.
+     * Sucht eine Person anhand des Query.
      *
-     * @param iPerson
      */
     @Override
-    public void savePersonWithQueries(IPerson iPerson) {
-        //todo
+    public List<IPerson>  personWithO() {
+        Session session = null;
+        List<IPerson> personList = new ArrayList<>();
+
+        try {
+            String sql = "SELECT Bandmitglied " +
+                         "FROM Person"+
+                         "WHERE Bandmitglied" +
+                         "LIKE 'O%'" ;
+
+            Query query = session.createQuery(sql);
+            session = HibernateUtils.getSession();
+            session.beginTransaction();
+            personList = (List<IPerson>)query.getResultList();
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.fillInStackTrace();
+        } finally {
+            HibernateUtils.closeSession(session);
+        }
+
+        return personList;
     }
 
     /**
@@ -139,7 +157,7 @@ public class PersonDaoHibernateImpl implements IPersonDao {
         Session session = null;
         List<IPerson> personList;
         String queryString = "Select pn.name From Person pn where pn.name=" +"'"+name+"'";
-        //die 'name' also '' nicht vergessen ;-)
+        //die 'name'  also '' nicht vergessen ;-)
 
         try {
             session = HibernateUtils.getSession();

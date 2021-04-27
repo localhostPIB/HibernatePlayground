@@ -95,6 +95,18 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     /**
+     * Gibt alle Personen aus die mit O anfangen.
+     *
+     * @return Liste mit allen Personen die mit O anfangen.
+     */
+    @Override
+    public List<IPerson> findPersonswithO() {
+        List<IPerson> personList = personDao.personWithO();
+
+        return personList;
+    }
+
+    /**
      * Fidnet eine Person anhand ihrer Id.
      *
      * @param id - Id der Person.

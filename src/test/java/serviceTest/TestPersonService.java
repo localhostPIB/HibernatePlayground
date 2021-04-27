@@ -86,13 +86,24 @@ public class TestPersonService {
         IPerson iperson = personService.findPersonById(1);
         iperson.setName("Christian");
         personService.updatePerson(iperson);
+
+    }
+
+    /**
+     * Testet die Update-Funktion.
+     */
+    @Test
+    public void e_findPersonwithO(){
+        List<IPerson> personList = personService.findPersonswithO();
+
+        assertEquals(1, personList.size());
     }
 
     /**
      * Testet ob alles geloescht wird.
      */
     @Test
-    public void e_deleteAllTest(){
+    public void f_deleteAllTest(){
         List<IPerson> personTestList2;
         personService.deleteAllPersons();
 
